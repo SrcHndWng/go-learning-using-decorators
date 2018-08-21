@@ -17,6 +17,7 @@ func Do(adder Adder) int {
 }
 
 func main() {
+	// function imprement
 	a := AdderFunc(
 		func(x, y int) int {
 			return x + y
