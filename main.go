@@ -1,28 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
-type Adder interface {
-	Add(x, y int) int
+func decorator(f func(x, y int) int) func(x, y int) int {
+	return func(x, y int) int {
+		var result int
+		// add log print
+		defer func() {
+			log.Printf("x=%v, y=%v, result=%v", x, y, result)
+		}()
+		result = f(x, y)
+		return result
+	}
 }
 
-type AdderFunc func(x, y int) int
-
-func (a AdderFunc) Add(x, y int) int {
-	return a(x, y)
-}
-
-func Do(adder Adder) int {
-	return adder.Add(1, 2)
+func adderFunc(x, y int) int {
+	// function imprement
+	return x + y
 }
 
 func main() {
-	// function imprement
-	a := AdderFunc(
-		func(x, y int) int {
-			return x + y
-		},
-	)
-	result := Do(a)
-	fmt.Println(result)
+	result := decorator(adderFunc)(1, 2)
+	fmt.Printf("result = %v\n", result)
 }

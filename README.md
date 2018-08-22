@@ -2,6 +2,9 @@
 
 ## About This
 
-https://www.bartfokker.nl/posts/decorators/
+Decoratorの学習用プログラム。
 
-を学習のために写経したもの。
+https://www.bartfokker.nl/posts/decorators/
+https://gist.github.com/alehano/8785933
+
+を参考に実装。
